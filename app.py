@@ -1,26 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
-import sqlite3
+from static.build.model import * # type: ignore
 
 app = Flask(__name__)
 
-# BUSCA AS INFORMAÇÕES NO BANCO DE DADOS
-def show_All():
-    conn = sqlite3.connect('produtos.db')
-    cur = conn.cursor()
-    all_date = cur.execute('SELECT * FROM produtos;').fetchall()
-    return all_date
-
-#  ADICIONA UM NOVO ITEM
-def add(name):
-    conn = sqlite3.connect('produtos.db')
-    
-    with conn:
-        sql = f'''INSERT INTO produtos (name) VALUES ('{name}')'''
-        cur = conn.cursor()
-        cur.execute(sql)
-        conn.commit()
-        return cur.lastrowid
-    
 # ROTA INICIAL, RETORNA TODOS OS DADOS NA TEBELA
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -31,5 +13,16 @@ def index():
     return render_template("index.html", dados=show_All())
 
 
+@app.route("/update/<string:id>", methods=["GET", "POST"])
+def alter(id):
+    alter_item(id)
+    return redirect(url_for('index'))
+
+
+@app.route("/delete/<string:id>", methods=["GET", "POST"])
+def delete(id):
+    delete_item(id)
+    return redirect(url_for('index'))
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
