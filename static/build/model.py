@@ -1,7 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 
-# CRIA CONEXÃO COM O BANCO DE DADOS
+# CRIAR CONEXÃO COM O BANCO DE DADOS
 def conecta_db():
   conn = None
   
@@ -20,8 +20,8 @@ def show_All():
     all_date = cur.execute('SELECT * FROM produtos;').fetchall()
     return all_date
 
-#  ADICIONA UM NOVO ITEM
-def add(name):
+#  ADICIONAR UM ELEMENTO
+def add_item(name):
     conn = conecta_db()
     
     with conn:
@@ -31,16 +31,17 @@ def add(name):
         conn.commit()
         return cur.lastrowid
     
-# ALTERA UM PRODUTO
-def alter_item(id, name):
+# ALTERAR UM ELEMENTO
+def alter_item(name, id):
     conn = conecta_db()
+    
     with conn:
-        sql = f'''UPDATE produtos SET name='{name}' WHERE id='{id}' '''
+        sql = f'''UPDATE produtos SET name='{name}' WHERE id='{id}'; '''
         cur = conn.cursor()
         cur.execute(sql)
         conn.commit()
 
-# DELETA UM PRODUTO
+# DELETA UM ELEMENTO
 def delete_item(id):
     conn = conecta_db()
     

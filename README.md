@@ -6,7 +6,7 @@ Ao enviar o formulário, os dados são processados pelo backend do projeto, que 
 
 Além disso, a página é projetada para exibir dinamicamente os dados armazenados na forma de uma tabela logo ao lado do formulário. Cada vez que um novo conjunto de dados é adicionado através do formulário, a tabela é atualizada automaticamente, exibindo todas as entradas anteriores juntamente com a nova.
 
-A interface é responsiva e amigável, permitindo aos usuários visualizar, adicionar e, se necessário, modificar ou excluir(Disponível na próxima atualização) entradas existentes diretamente da tabela exibida na mesma página.
+A interface é responsiva e amigável, permitindo aos usuários visualizar, adicionar e, se necessário, modificar ou excluir entradas existentes diretamente da tabela exibida na mesma página.
 
 Este projeto não apenas demonstra a funcionalidade básica de um formulário web interativo e uma exibição tabular de dados, mas também utiliza tecnologias simples e eficazes para alcançar seus objetivos, proporcionando uma experiência de usuário eficiente e satisfatória.
 

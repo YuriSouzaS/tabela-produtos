@@ -7,18 +7,21 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
-        name = request.form['name_product']
-        add(name)
-        return redirect(url_for('index'))
+        name = request.form['name_product'] # ATRIBUINDO O VALOR DO INPUT, PARA A VARIÉVEL name
+        add_item(name) # ADICIONANDO NOVO  ELEMENTO AO BANCO DE DADOS
     return render_template("index.html", dados=show_All())
 
 
-@app.route("/update/<string:id>", methods=["GET", "POST"])
+# ROTA PARA ALTERAÇÃO DE ELEMENTOS
+@app.route("/alter/<string:id>", methods=["GET", "POST"])
 def alter(id):
-    alter_item(id)
-    return redirect(url_for('index'))
+    if request.method == 'POST':
+        name = request.form['name_product']
+        alter_item(name, int(id))
+        return redirect(url_for('index'))
+    return render_template('update.html')
 
-
+# ROTA PARA EXCLUSÃO DE ELEMENTOS 
 @app.route("/delete/<string:id>", methods=["GET", "POST"])
 def delete(id):
     delete_item(id)
